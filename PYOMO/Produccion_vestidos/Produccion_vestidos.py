@@ -80,7 +80,7 @@ results.write()
 vestido.x.display()
 vestido.objective.display()
 
-
+## Ajustes en algoritmo de Optimizacion
 
 
 
