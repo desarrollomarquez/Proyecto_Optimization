@@ -1,0 +1,10 @@
+# Ejemplo programación lineal con CVXopt
+
+# Resolviendo el problema con cvxopt
+A = cvxopt.matrix([[-1., -2., 1., 0.], # columna de x1
+            [-1.5, -1., 0., 1.]]) # columna de x2
+b = cvxopt.matrix([750., 1000., 0., 0.]) # resultados
+c = cvxopt.matrix([50., 40.]) # funcion objetivo
+
+# resolviendo el problema
+sol=cvxopt.solvers.lp(c,A,b)
