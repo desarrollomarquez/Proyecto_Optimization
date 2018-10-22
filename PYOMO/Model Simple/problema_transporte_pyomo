@@ -1,5 +1,7 @@
-# Ejemplo del problema de transporte de las cervezas utilizando Pyomo
+﻿# Ejemplo del problema de transporte de las cervezas utilizando Pyomo
 # Creamos el modelo
+
+
 modelo = ConcreteModel()
 
 # Creamos los nodos de oferta y demanda
@@ -8,8 +10,10 @@ modelo.j = Set(initialize=['Bar 1', 'Bar 2', 'Bar 3', 'Bar 4', 'Bar 5'],
                doc='Bares')
 
 # Definimos las capacidades de oferta y demanda
+
 modelo.a = Param(modelo.i, initialize={'Cervecería A':1000,'Cervecería B':4000},
                  doc='Capacidad de oferta de las cervecerías')
+
 modelo.b = Param(modelo.j, initialize={'Bar 1':500,'Bar 2':900,'Bar 3':1800, 
                                       'Bar 4':200, 'Bar 5':700 },
                  doc='Demanda de cada bar')
