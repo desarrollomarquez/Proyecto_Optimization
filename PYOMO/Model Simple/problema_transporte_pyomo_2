@@ -1,0 +1,33 @@
+## Definimos las restricciones ##
+# Límite de oferta
+def f_oferta(modelo, i):
+    return sum(modelo.x[i,j] for j in modelo.j) <= modelo.a[i]
+modelo.oferta = Constraint(modelo.i, rule=f_oferta, 
+                           doc='Límites oferta de cada Cervecería')
+
+# Límite de demanda
+def f_demanda(modelo, j):
+    return sum(modelo.x[i,j] for i in modelo.i) >= modelo.b[j]  
+modelo.demanda = Constraint(modelo.j, rule=f_demanda, 
+                            doc='Límites demanda de cada bar')
+
+
+
+## Definimos la función objetivo y resolvemos el problema ##
+# Función objetivo
+def f_objetivo(modelo):
+    return sum(modelo.c[i,j]*modelo.x[i,j] for i in modelo.i for j in modelo.j)
+modelo.objetivo = Objective(rule=f_objetivo, sense=minimize, 
+                           doc='Función Objetivo')
+
+# resolvemos el problema e imprimimos resultados
+def pyomo_postprocess(options=None, instance=None, results=None):
+    modelo.x.display()
+
+# utilizamos solver glpk
+opt = SolverFactory("glpk")
+resultados = opt.solve(modelo)
+
+# imprimimos resultados
+print("\nSolución óptima encontrada\n" + '-'*80)
+pyomo_postprocess(None, None, resultados)
