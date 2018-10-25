@@ -1,0 +1,10 @@
+# graficamos
+fig, ax = plt.subplots(figsize=(10,8))
+ax.scatter(xdata, ydata)
+ax.plot(xdata, y, 'r', lw=2)
+ax.plot(xdata, f(xdata, *beta_opt), 'b', lw=2)
+ax.set_xlim(0, 5)
+ax.set_xlabel(r"$x$", fontsize=18)
+ax.set_ylabel(r"$f(x, \beta)$", fontsize=18)
+ax.set_title('Mínimos cuadrados no lineales')
+plt.show()
